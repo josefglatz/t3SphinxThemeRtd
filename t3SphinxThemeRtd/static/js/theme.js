@@ -18,18 +18,11 @@ $(document).ready(function() {
     var fillInRelatedLinks = function () {
         $("#relatedLinksFaSpan").attr('class', 'fa fa-spinner fa-spin');
         $('#ajaxversions').load(
-            '//services/ajaxversions.php?url=' + encodeURI(document.URL),
+            'https://' + document.location.host + '/' + document.location.pathname.split('/').slice(1, 4).join('/') + '/versions.html',
             false,
             function (responseText, textStatus, jqXHR) {
                 $("#relatedLinksFaSpan").attr('class', 'fa fa-book');
                 window.T3Docs['fillInRelatedLinks'] = {'dest':'ajaxversions.php', 'responseText':responseText, 'textStatus':textStatus};
-            }
-        );
-        $('#ajaxdownloads').load(
-            '//services/ajaxdownloads.php?url=' + encodeURI(document.URL),
-            false,
-            function (responseText, textStatus, jqXHR) {
-                window.T3Docs['fillInRelatedLinks'] = {'dest':'ajaxdownloads.php', 'responseText':responseText, 'textStatus':textStatus};
             }
         );
     }
